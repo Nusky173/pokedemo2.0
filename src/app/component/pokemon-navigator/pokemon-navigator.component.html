@@ -1,0 +1,22 @@
+<div class="container" [ngStyle]="{'border-color': borderColor}">
+    <div 
+        class="prev-poke" 
+        *ngIf="currentPokemonPrec" 
+        [ngStyle]="{'border-color': borderColor}"
+        (click)="_goToPokemonPage(currentPokemonPrec.id)">
+        <img [src]="currentPokemonPrec.sprites.other['official-artwork'].front_default" />
+    </div>
+    <div 
+        class="current-poke" 
+        *ngIf="currentPokemonNav" 
+        [ngStyle]="{'border-color': borderColor}">
+        <img [src]="currentPokemonNav.sprites.other['official-artwork'].front_default" />
+    </div>
+    <div 
+        class="next-poke" 
+        *ngIf="currentPokemonNext" 
+        [ngStyle]="{'border-color': borderColor} " 
+        (click)="_goToPokemonPage(currentPokemonNext.id)">
+        <img [src]="currentPokemonNext.sprites.other['official-artwork'].front_default" />
+    </div>
+</div>

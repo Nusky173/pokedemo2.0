@@ -1,0 +1,9 @@
+.tile {
+    width: 80%;
+}
+
+.paginator {
+    margin: 16px 0;
+    border-radius: 4px;
+    background-color: #e6e6e699
+}

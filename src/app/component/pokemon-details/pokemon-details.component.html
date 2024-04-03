@@ -1,0 +1,85 @@
+<app-pokemon-navigator 
+    class="pokemon-navigator" 
+    *ngIf="currentPokemonNav" 
+    [currentPokemonNav]="currentPokemonNav"
+    [borderColor]="types[0].css"
+    >
+</app-pokemon-navigator>
+
+<div *ngIf="pokemonDetails && pokemonSpecies">
+    <mat-card class="poke-card" [ngStyle]="{'border-color': types[0].css}">
+        <div class="poke-card-left">
+            <div class="card-titles">
+                <div class="name">{{pokemonDetails.name | firstLetterUpperCase }} </div>
+                <div class="id"> {{id}}</div>
+            </div>
+            <div class="image">
+                <img *ngIf="!isShinyDisplayed" [src]="officialArtwork" class="pokemon-img" />
+                <img *ngIf="isShinyDisplayed" [src]="officialArtworkShiny" class="pokemon-img" />
+            </div>
+            <div class="checkbox">
+                Shiny
+                <mat-slide-toggle 
+                    (change)="_slideChange($event)"
+                    [checked]="isShinyDisplayed" 
+                    [color]="types[0].css"
+                    >
+                </mat-slide-toggle>
+            </div>
+            <div class="types">
+                <div *ngFor="let type of types">
+                    <div class="type-block" [ngStyle]="{'background-color': type.css}">
+                        {{type.name | firstLetterUpperCase}} 
+                    </div>
+                </div>
+            </div>
+            <div class="generation">
+                {{generation}}
+            </div>
+            <div class="information">
+                <div alt="Poids" *ngIf="pokemonDetails.weight" matTooltip="Weight">{{pokemonDetails.weight}}kg</div>
+                <div alt="Taille" *ngIf="pokemonDetails.height" matTooltip="Height">{{pokemonDetails.height}}cm</div>
+            </div>
+            <div class="habitat" *ngIf="pokemonSpecies.habitat" matTooltip="Habitat">
+                {{pokemonSpecies.habitat.name | firstLetterUpperCase}}
+            </div>
+        </div>
+        <div class="poke-card-right">
+            <div class="card-titles">Statistiques</div>
+                <div class="stat">
+                     <div class="ev-stats" >
+                        <div class="stat-name">EV</div>
+                        <div *ngFor="let stat of evStats"
+                            class="ev-block" 
+                            [matTooltip]="stat.name" 
+                            [ngStyle]="{'background-color': stat.color}"
+                        >
+                            {{stat.value}}
+                        </div>
+                    </div>
+
+                    <div class="base-stats">
+                        <div class="stat-name">Base</div>
+                        <div 
+                            *ngFor="let stat of baseStats"
+                            class="base-block" 
+                            [matTooltip]="stat.name" 
+                            [ngStyle]="{'background-color': stat.color}"
+                        >
+                            {{stat.value}}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="evolution" *ngIf="evolutionChainIhm">
+                    <div *ngFor="let evolution of evolutionChainIhm" class="evolution-chain" (click)="_goToPokemonPage(evolution)">
+                        <img *ngIf="!isShinyDisplayed" class="artwork" [src]="evolution.artwork" />
+                        <img *ngIf="isShinyDisplayed" class="artwork" [src]="evolution.artworkShiny" />
+                        <div *ngIf="evolution.level" class="level">{{evolution.level}}</div>
+                        <img *ngIf="evolution.itemSprite" class="item" [src]="evolution.itemSprite ? evolution.itemSprite : ''" [matTooltip]="evolution.itemName!" />
+                    </div>
+                </div>
+        </div>
+    
+    </mat-card>
+</div>

@@ -1,0 +1,23 @@
+.container {
+    height: 100%;
+    text-align: center;
+    background-color: #e6e6e666 
+}
+
+.container:hover {
+    height: 100%;
+    text-align: center;
+    background-color: #f8f8f8cc;
+    cursor: pointer;
+
+    .pokemon-image {
+        transform: scale(1.05);
+    }
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+

@@ -1,0 +1,14 @@
+<mat-grid-list cols=4 gutterSize="8px" rowHeight="150px" class="grid">
+    <mat-grid-tile *ngFor="let poke of pokeList" class="tile">
+        <app-pokemon [pokemon]="poke"></app-pokemon>    
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-paginator #paginator
+            [length]="numberOfItems"
+            [pageSize]="20"
+            [pageSizeOptions]="[5, 10, 20]"
+            (page)="_pageEvent($event)"
+            class="paginator"
+            >
+</mat-paginator>

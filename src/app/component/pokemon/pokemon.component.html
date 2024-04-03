@@ -1,0 +1,9 @@
+<a [routerLink]="['/pokemon', pokemon?.id]" class="link">
+    <mat-card *ngIf="pokemonDetails" class="container">
+        <mat-card-content class="content">
+            <img mat-card-image [src]="pokemonDetails.sprites.front_default" class="pokemon-image">
+            
+            <div class="pokemon-name">{{pokemonDetails.name | firstLetterUpperCase}}</div>
+        </mat-card-content>
+    </mat-card>
+</a>
